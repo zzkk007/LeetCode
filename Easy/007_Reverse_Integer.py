@@ -44,9 +44,24 @@
             c. 如果 rev == INTMAX/10, 那么只要 pop > 7, temp = rev*10 + pop 就会溢出。
 
 """
-
 class Solution():
 
+    def reverse(self, x):
+        if x >= 0:
+            x = str(x)
+            x = x[::-1]
+        else:
+            x = str(x)
+            x = x[1:]
+            x = '-' + x[::-1]
+        x = float(x)
+        if (x < float(-2 << 30)) | (x >= float(2 << 30)):
+            return 0
+        x = int(x)
+        return x
 
+if __name__ == "__main__":
 
-
+    S = Solution()
+    rev = S.reverse(1230)
+    print(rev)
