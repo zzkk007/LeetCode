@@ -1,4 +1,5 @@
 """
+
     给定一个数组 nums 和一个值 val, 你需要原地移除所有数值等于 val 的元素，
     返回移除后数组的新长度。
 
@@ -32,6 +33,32 @@
         }    
 
 """
+
+class Solution:
+    def removeElement(self, nums, val):
+        i = 0
+        for j in range(len(nums)):
+            if nums[j] != val:
+                nums[i] = nums[j]
+                i += 1
+
+
+        print(nums)
+        return  i
+
+
+if __name__ == "__main__":
+
+    S = Solution()
+    alist = [2,3,4,5,6,7,8,3]
+    print(S.removeElement(alist, 3))
+
+
+
+
+
+
+
 
 
 
