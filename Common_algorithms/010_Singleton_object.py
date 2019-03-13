@@ -13,9 +13,9 @@ class Singleton(object):
             self.name = name
             Singleton.__first_init = True
 
-
 a = Singleton(18, "dongGe")
 b = Singleton(8, "dongGe")
+
 
 print(id(a))
 #140298627282200
