@@ -24,6 +24,7 @@
         输出: 0
 
 """
+"""
 class Solution:
     def searchInsert(self, nums, target):
 
@@ -42,15 +43,30 @@ class Solution:
             if  target > nums[key - 1] and target < value:
                 nums.insert(key, target)
                 return key
+"""
 
+class Solution:
 
+    def searchInsert(self, nums, target):
+        """
+        :param nums: list
+        :param target: int
+        :return: int
+        """
+
+        if  target in nums:
+            return nums.index(target)
+        else:
+            nums.append(target)
+            nums.sort()
+            return nums.index(target)
 
 if __name__ == "__main__":
 
     S = Solution()
     alist = [1, 3, 5, 6]
     print(alist)
-    print(S.searchInsert(alist, 7))
+    print(S.searchInsert(alist, 0))
     print(alist)
 
 
