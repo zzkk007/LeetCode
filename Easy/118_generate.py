@@ -19,12 +19,20 @@
 
 
 class Solution:
-    def generate(self, num):
-        if num < 1:
-            return 0
+    def generate(self, num_rows):
+        triangle = []
 
-        result = []
+        for row_num in range(num_rows):
+            row = [None for _ in range(row_num + 1)]
+            row[0], row[-1] = 1, 1
 
-        for i in range(num-1):
-            result.extend([])
+            for j in range(1, len(row)-1):
+                row[j] = triangle[row_num-1][j-1] + triangle[row_num-1][j]
 
+            triangle.append(row)
+        return triangle
+
+if __name__ == "__main__":
+
+    S = Solution()
+    print(S.generate(5))
