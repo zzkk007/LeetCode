@@ -32,6 +32,8 @@ class Solution:
             triangle.append(row)
         return triangle
 
+
+
 if __name__ == "__main__":
 
     S = Solution()
