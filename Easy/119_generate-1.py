@@ -15,21 +15,16 @@ class Solution(object):
 
     def getRow(self, rowIndex):
         line = [1]
-        for s in range(rowIndex + 1):
-            next_line = [1] * (s + 1)
-            print('--------')
-            print(next_line)
+        for n in range(rowIndex + 1):
+            new_line = [1] * (n + 1)
+
             for i in range(len(line)):
                 if i == 0:
                     continue
-                next_line[i] = line[i] + line[i-1]
-            line = next_line
-            print(line)
-            print('---------')
-
+                else:
+                    new_line[i] = line[i-1] + line[i]
+            line = new_line
         return line
-
-
 
 if __name__ == "__main__":
 
