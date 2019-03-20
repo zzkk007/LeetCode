@@ -29,3 +29,31 @@
 
 """
 
+
+
+class Solution():
+
+    def maxprofit(self, prices):
+        i = 0
+        valley = prices[0]
+        peak = prices[0]
+        maxprofit = 0
+
+        while i < len(prices) - 1:
+            while i < len(prices) - 1 and prices[i] >= prices[i+1]:
+                i += 1
+            valley = prices[i]
+            print("i[%d] ---> valley[%d]:"%(i, valley))
+            while i < len(prices) - 1 and prices[i] <= prices[i+1]:
+                i += 1
+            peak = prices[i]
+            print("i[%d] ---> peak[%d]"%(i, peak))
+            maxprofit += peak - valley
+        return maxprofit
+
+
+if __name__ == "__main__":
+    S = Solution()
+    alist = [7,1,5,3,6,9]
+    print(S.maxprofit(alist))
+
