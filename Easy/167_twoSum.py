@@ -16,14 +16,25 @@
 
 """
 
+
+
 class Solution(object):
     def twoSum(self, numbers, target):
-        pass
+        hase_map = dict()
+
+        for key, value in enumerate(numbers):
+            hase_map[value] = key+1
+
+        for i in range(len(numbers)):
+            number = target - numbers[i]
+
+            if number in hase_map:
+                return [i+1, hase_map[number]]
 
 
 if __name__ == "__main__":
     S = Solution()
-    S.twoSum([1,2,3,4,5,6,7,8], 10)
+    print(S.twoSum([1, 2, 3, 4, 5, 6, 7, 8], 11))
 
 
 
