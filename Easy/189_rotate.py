@@ -38,6 +38,8 @@ class Solution():
 
 
 
+
+
 if __name__ == "__main__":
     S = Solution()
     alist = [1, 2, 3, 4, 5, 6, 7]
