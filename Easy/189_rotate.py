@@ -26,24 +26,28 @@
 
 """
 
-class Solution():
+"""
+    class Solution():
+        def rotate(self, nums, k):
+            #Do not return anything, modify nums in-place instead.
+            while k:
+                for  i in range(len(nums)-1, 0, -1):
+                    nums[i-1],nums[i] = nums[i],nums[i-1]
+                k -= 1            
+"""
+
+
+class Solution(object):
     def rotate(self, nums, k):
-        """
-        Do not return anything, modify nums in-place instead.
-        """
-
-
-
-
-
-
-
+        for i in range(k):
+            nums.insert(0, nums.pop())
+       #nums[:] = nums[len(nums) - k:] + nums[:len(nums) - k]
 
 
 if __name__ == "__main__":
     S = Solution()
-    alist = [1, 2, 3, 4, 5, 6, 7]
+    alist = [-1,-100,3,99]
     print(alist)
-    S.rotate(alist, 3)
+    S.rotate(alist, 2)
     print(alist)
 
