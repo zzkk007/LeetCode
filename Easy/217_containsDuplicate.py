@@ -23,6 +23,9 @@ class Solution(object):
     def containsDuplicate(self, nums):
         pass
 
+
+
 if __name__ == "__main__":
-    pass
+    S = Solution()
+    S.containsDuplicate([1, 2, 4, 3, 1])
 
