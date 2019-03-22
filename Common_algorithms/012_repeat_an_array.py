@@ -5,10 +5,8 @@
 
 
 def repeat_an_array(alist):
-
     #hase_map = dict()
     result = []
-
     #for k, v in enumerate(alist):
     #    hase_map[k] = v
 
