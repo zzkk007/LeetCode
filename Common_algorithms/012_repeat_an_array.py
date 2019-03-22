@@ -2,6 +2,8 @@
     一个数组，去掉重复的值，顺序不变，数组中的值不仅仅只有整数。
 
 """
+
+
 def repeat_an_array(alist):
 
     #hase_map = dict()
