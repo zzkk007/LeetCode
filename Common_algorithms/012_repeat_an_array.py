@@ -4,16 +4,23 @@
 """
 def repeat_an_array(alist):
 
-    for i in range(len(alist)-1):
-        for j in range(i+1, len(alist)):
-            if alist[i] == alist[j]:
-                pass
+    #hase_map = dict()
+    result = []
 
+    #for k, v in enumerate(alist):
+    #    hase_map[k] = v
+
+    for vaule in alist:
+        if vaule in result:
+            continue
+        else:
+            result.append(vaule)
+    return result
 
 if __name__ == "__main__":
 
 
-    alist = [1, '22', (1,'2'), {1:'1'}, '22', 3, 4, 1]
+    alist = [1, '22', (1,'2'), {1:'1'}, '22', 3, 4, 1, {1:'1'}, (1,'2'), '5']
     print(alist)
-    repeat_an_array(alist)
-    print(alist)
+    result = repeat_an_array(alist)
+    print(result)
