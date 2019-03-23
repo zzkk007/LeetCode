@@ -24,16 +24,33 @@
 from collections import  Counter
 class Solution(object):
 
+
     def containsDuplicate(self, nums):
+        '''
+            for k, v in enumerate(nums):
+                if v in nums[k+1:]:
+                    return True
+                else:
+                    return False
+
+
+            set1 = set(nums)
+                if len(set1) == len(nums):
+                    return False
+                else:
+                    return True
+
+        '''
+
         if nums == []:
             return False
         c = Counter(nums)
-        print(c)
-        print(c.most_common(1))
         if c.most_common(1)[0][1] > 1:
             return True
         else:
             return False
+
+
 
 
 
