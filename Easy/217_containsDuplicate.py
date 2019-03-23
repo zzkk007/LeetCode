@@ -17,15 +17,28 @@
 
         输入: [1,1,1,3,3,4,3,2,4,2]
         输出: true
+
 """
 
+
+from collections import  Counter
 class Solution(object):
+
     def containsDuplicate(self, nums):
-        pass
+        if nums == []:
+            return False
+        c = Counter(nums)
+        print(c)
+        print(c.most_common(1))
+        if c.most_common(1)[0][1] > 1:
+            return True
+        else:
+            return False
+
 
 
 
 if __name__ == "__main__":
     S = Solution()
-    S.containsDuplicate([1, 2, 4, 3, 1])
+    print(S.containsDuplicate([]))
 
