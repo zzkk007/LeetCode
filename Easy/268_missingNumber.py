@@ -38,12 +38,18 @@ class Solution:
 
 """
 
+
 class Solution:
     def missingNumber(self, nums):
         sum = len(nums)
+        print(sum)
         for i in range(len(nums)):
+            print(sum, nums[i])
             sum ^= nums[i]
+            print(sum,i)
             sum ^= i
+            print(sum)
+            print("---------")
 
         return sum
 
