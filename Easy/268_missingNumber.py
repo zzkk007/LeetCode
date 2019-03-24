@@ -14,17 +14,6 @@
 
         你的算法应具有线性时间复杂度。你能否仅使用额外常数空间来实现?
 
-class Solution:
-    def missingNumber(self, nums):
-        sum = len(nums)
-        for i in range(len(nums)):
-            sum ^= nums[i]
-            sum ^= i
-
-        return sum
-
-"""
-
 
 class Solution:
     def missingNumber(self, nums):
@@ -37,6 +26,26 @@ class Solution:
         return realSum - sum
 
 
+
+# 好像和以前的一道题（只出现一次的数字）有异曲同工之处。看了大家的题解，
+# 异或操作（^）是一种很好的方式，不用考虑sum越界问题。
+
+#**举个例子：**
+
+# 0 ^ 4 = 4
+# 4 ^ 4 = 0
+# 那么，就可以不用求和，直接使用异或运算^进行**抵消**，剩下的数字就是缺失的了
+
+"""
+
+class Solution:
+    def missingNumber(self, nums):
+        sum = len(nums)
+        for i in range(len(nums)):
+            sum ^= nums[i]
+            sum ^= i
+
+        return sum
 
 
 if __name__ == "__main__":
