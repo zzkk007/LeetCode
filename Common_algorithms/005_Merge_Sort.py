@@ -11,6 +11,8 @@
         最坏时间复杂度：O(nlogn)
         稳定性：稳定
 """
+
+
 def merge(left, right):
     '''合并操作，将两个有序数组left[]和right[]合并成一个大的有序数组'''
     #left与right的下标指针
