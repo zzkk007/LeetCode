@@ -16,12 +16,19 @@
 
 class Solution():
     def moveZeroes(self, nums):
-        pass
+        for i in range(len(nums)):
+            if nums[i] == 0:
+                for j in range(i+1, len(nums)):
+                    nums[j],nums[j+1] = nums[j+1],nums[j]
+                    j += 1
+
+
+
 
 
 if __name__ == "__main__":
     S = Solution()
-    numns = [0, 3, 2, 1, 12, 0, 3]
+    numns = [0, 0, 1]
     print(numns)
-    S.moveZeroes([numns])
+    S.moveZeroes(numns)
     print(numns)
