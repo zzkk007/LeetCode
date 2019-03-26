@@ -22,13 +22,15 @@
 
 """
 
+import heapq
 class Solution:
     def thirdMax(self, nums):
-        pass
-
+        if len(set(nums)) < 3:
+            return max(nums)
+        return heapq.nlargest(3, set(nums)).pop()
 
 if __name__ == "__main__":
     S = Solution()
-    nums = [2, 2, 3, 1]
+    nums = [1,2]
     print(S.thirdMax(nums))
 
