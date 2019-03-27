@@ -13,3 +13,24 @@
 
 
 """
+
+class Solution(object):
+    def findMaxConsecutiveOnes(self, nums):
+        sumMax = 0
+        temp = 0
+        for num in nums:
+            if num == 1:
+                temp += 1
+            else:
+                if temp >= sumMax:
+                    sumMax = temp
+                temp = 0
+
+        if temp >= sumMax:
+            sumMax = temp
+        return sumMax
+
+if __name__ == "__main__":
+    S = Solution()
+    alist = [1, 1, 0, 1, 1, 1, 1]
+    print(S.findMaxConsecutiveOnes(alist))
