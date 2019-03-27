@@ -17,7 +17,16 @@
 
 class Solution(object):
     def findDisappearedNumbers(self, nums):
-        pass
+        # return  [i for i in range(1,len(nums)+1) if i not in nums] (超出时间限制)
+        result = []
+        hase_map = dict()
+        for v, k in  enumerate(nums):
+            hase_map[k] = v
+
+        for i in range(1, len(nums)+1):
+            if i not in hase_map:
+                result.append(i)
+        return result
 
 if __name__ == "__main__":
     S = Solution()
