@@ -65,11 +65,27 @@ class Solution(object):
 
 class Solution(object):
     def findPairs(self, nums, k):
-        pass
+        nums.sort()
+        sumMax = 0
+
+        for i in range(len(nums)):
+            if i == 0 or nums[i - 1] != nums[i]:
+                low = i + 1
+                high = len(nums) - 1
+                while low <= high:
+                    mid = (low + high)//2
+                    if nums[mid] == (nums[i] + k):
+                        sumMax += 1
+                        break
+                    elif nums[mid] > nums[i] + k:
+                        high = mid - 1
+                    else:
+                        low = mid + 1
+
+        return sumMax
 
 
 if __name__ == "__main__":
     S = Solution()
-    alist = [3, 1, 4, 1, 5]
-    alist.sort()
-    print(S.findPairs(alist, 2))
+    alist = [1, 3, 1, 5, 4]
+    print(S.findPairs(alist, 0))
