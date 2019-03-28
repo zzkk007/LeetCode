@@ -31,15 +31,45 @@
 
 """
 
+"""
+# 超出时间限制
 
 class Solution(object):
 
     def findPairs(self, nums, k):
-        pass
+        alist = list()
+        for i in range(len(nums)-1):
+            for j in range(i+1, len(nums)):
+                if abs(nums[i] - nums[j]) == k:
+                    if (nums[i], nums[j]) not in alist and (nums[j], nums[i]) not in alist:
+                        alist.append((nums[i], nums[j]))
+
+        print(alist)
+        return len(alist)
+
+class Solution(object):
+
+    def findPairs(self, nums, k):
+        hase_map = dict()
+        for i in range(len(nums)-1):
+            for j in range(i+1, len(nums)):
+                if abs(nums[i] - nums[j]) == k:
+                    if (nums[i], nums[j]) not in hase_map and (nums[j], nums[i]) not in hase_map:
+                        hase_map[(nums[i],nums[j])] = None
+
+        print(hase_map)
+        return len(hase_map)
+
+"""
+
+
+class Solution(object):
+    def findPairs(self, nums, k):
 
 
 
 if __name__ == "__main__":
     S = Solution()
-    alist = [1, 2, 3, 4]
-    print(S.findPairs(alist, 1))
+    alist = [3, 1, 4, 1, 5]
+    alist.sort()
+    print(S.findPairs(alist, 2))
