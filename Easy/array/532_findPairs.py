@@ -65,7 +65,7 @@ class Solution(object):
 
 class Solution(object):
     def findPairs(self, nums, k):
-
+        pass
 
 
 if __name__ == "__main__":
