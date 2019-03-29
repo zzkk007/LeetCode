@@ -59,26 +59,20 @@ python3 中生成二维数组的方法：
 
 class Solution:
     def matrixReshape(self, nums, r, c):
+
         if r*c != len(nums) * len(nums[0]):
             return nums
 
-    res =
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        res = [[None]*c for i in range(r)]
+        count = 0
+        for i in range(len(nums)):
+            for j in range(len(nums[0])):
+                res[count//c][count%c] = nums[i][j]
+                count+=1
+        return res
 
 if __name__ == "__main__":
     S = Solution()
     nums = [[1, 2],[3, 4]]
-    S.matrixReshape(nums, 1, 4)
+    print(nums)
+    print(S.matrixReshape(nums, 1, 4))
