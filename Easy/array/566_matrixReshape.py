@@ -1,7 +1,8 @@
 """
     566. 重塑矩阵
 
-    在MATLAB中，有一个非常有用的函数 reshape，它可以将一个矩阵重塑为另一个大小不同的新矩阵，但保留其原始数据。
+    在MATLAB中，有一个非常有用的函数 reshape，
+    它可以将一个矩阵重塑为另一个大小不同的新矩阵，但保留其原始数据。
 
     给出一个由二维数组表示的矩阵，以及两个正整数r和c，分别表示想要的重构的矩阵的行数和列数。
     重构后的矩阵需要将原始矩阵的所有元素以相同的行遍历顺序填充。
@@ -36,12 +37,45 @@
             没有办法将 2 * 2 矩阵转化为 2 * 4 矩阵。 所以输出原矩阵。
 
 
-"""
+python3 中生成二维数组的方法：
 
+
+    N = [[0]*10 for i in range(10)]
+
+        上述代码其实就相当于:
+
+        N = []
+        for i in range(10):
+            N.append([0]*10)
+
+    另外一种方法：
+
+        import numpy
+        N = numpy.zeros([10, 10])
+
+
+
+"""
 
 class Solution:
     def matrixReshape(self, nums, r, c):
-        pass
+        if r*c != len(nums) * len(nums[0]):
+            return nums
+
+    res =
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 if __name__ == "__main__":
