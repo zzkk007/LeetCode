@@ -57,6 +57,7 @@ python3 中生成二维数组的方法：
 
 """
 
+
 class Solution:
     def matrixReshape(self, nums, r, c):
 
@@ -64,15 +65,20 @@ class Solution:
             return nums
 
         res = [[None]*c for i in range(r)]
+
+        # 用 count 来产生新列表
         count = 0
         for i in range(len(nums)):
             for j in range(len(nums[0])):
+                # count//c 新数组的行
+                # count%c 新数组的列
                 res[count//c][count%c] = nums[i][j]
                 count+=1
         return res
 
+
 if __name__ == "__main__":
     S = Solution()
-    nums = [[1, 2],[3, 4]]
+    nums = [[1, 2],[3, 4],[5, 6]]
     print(nums)
-    print(S.matrixReshape(nums, 1, 4))
+    print(S.matrixReshape(nums, 2, 3))
