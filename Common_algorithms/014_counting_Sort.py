@@ -92,8 +92,9 @@ def countingSort(a, n):
     #print(r)
 
     # 将结果拷贝给 a 数组
-    for i  in range(n):
-        a[i]= r[i]
+    #for i  in range(n):
+    #    a[i]= r[i]
+    a[:] = r
 
 if __name__ == "__main__":
 
