@@ -33,7 +33,7 @@ class Solution(object):
                     flag = False
             else:
 
-                if nums[i] < nums[i + 1]:
+                if nums[i] < nums[i + 1] and nums[i-1] > nums[i]:
                     max_index = i
 
 
@@ -53,5 +53,6 @@ if __name__ == "__main__":
     # nums = [2, 6, 4, 8, 10, 9, 15]
     # nums = [2, 1]
     # nums = [5, 4, 3, 2, 1]
-    nums = [1, 3, 2, 4, 5, 6, 7]
+    # nums = [1, 3, 2, 4, 5, 6, 7]
+    nums = [1, 3, 2, 2, 2]
     print(S.findUnsortedSubarray(nums))
