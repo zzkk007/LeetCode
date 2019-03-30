@@ -14,45 +14,48 @@
     说明：
         输入的数组长度范围在 [1, 10,000]。
         输入的数组可能包含重复元素 ，所以升序的意思是<=。
+
 """
 
 
+'''
+    思路是：从左往右找到正确顺序的一边，end右边
+           从右往左找到正确顺序的一边，start 左边
+    
+'''
 
 class Solution(object):
-
-
     def findUnsortedSubarray(self, nums):
-
-        min_index, max_index = 0, 0
-        flag = True
-
-        for i in range(len(nums)-1):
-            if flag:
-                if nums[i] > nums[i + 1]:
-                    min_index = i
-                    flag = False
-            else:
-
-                if nums[i] < nums[i + 1] and nums[i-1] > nums[i]:
-                    max_index = i
-
-
-        print(min_index, max_index)
-        if flag:
+        if nums is None or len(nums) == 0:
             return 0
-        if not flag and not max_index:
-            return len(nums)
+        start, end = 0, -1
+        max, min = nums[0], nums[-1]
 
-        return (max_index - min_index + 1)
+        for i in range(1, len(nums)):
+            if max > nums[i]:
+                end = i
+            else:
+                max = nums[i]
+
+
+            if min < nums[len(nums) - 1 - i]:
+                start = len(nums) - 1 - i
+            else:
+                min = nums[len(nums)-1 - i]
+
+
+        return end - start + 1
+
+
 
 
 if __name__ == "__main__":
     S = Solution()
 
-    # nums = [1, 3, 2, 3, 3]
+    nums = [1, 3, 2, 3, 3]
     # nums = [2, 6, 4, 8, 10, 9, 15]
     # nums = [2, 1]
     # nums = [5, 4, 3, 2, 1]
     # nums = [1, 3, 2, 4, 5, 6, 7]
-    nums = [1, 3, 2, 2, 2]
+    # nums = [1, 3, 2, 2, 2]
     print(S.findUnsortedSubarray(nums))
