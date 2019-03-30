@@ -76,6 +76,7 @@ a[:] = a_sorted
 # 计数排序，a 是数组，n 是数组大小，
 # 假设数组中存储都是非负整数。
 
+
 def countingSort(a, n):
 
     if n <= 1:
@@ -89,35 +90,36 @@ def countingSort(a, n):
 
     # 申请一个计数数组 c, 下标大小为[0, max]
     c = [0]*(max + 1)
-    #print(c)
-    #print('---------------------')
+    # print(c)
+    # print('---------------------')
 
     # 计算每个元素的个数，放入 c 中
     for i in range(n):
         c[a[i]] += 1
-    #print(c)
-    #print('---------------------')
+    # print(c)
+    # print('---------------------')
 
 
     # 依次累加
     for i in range(1, max + 1):
         c[i] = c[i - 1] + c[i]
-    #print(c)
-    #print('---------------------')
+    # print(c)
+    # print('---------------------')
 
     # 临时数组 r, 存储排序之后的结果
     r = [None]*n
 
-    for i in range(n-1,-1,-1):
+    for i in range(n-1, -1, -1):
         index = c[a[i]] - 1
         r[index] = a[i]
         c[a[i]] -= 1
-    #print(r)
+    # print(r)
 
     # 将结果拷贝给 a 数组
-    #for i  in range(n):
+    # for i  in range(n):
     #    a[i]= r[i]
     a[:] = r
+
 
 if __name__ == "__main__":
 
