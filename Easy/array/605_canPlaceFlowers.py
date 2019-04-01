@@ -23,18 +23,49 @@
         n 是非负整数，且不会超过输入数组的大小。
 
 """
-
+'''
+        1. 看至少三个0挨在一起的子串有多少
+        2. 为了漏掉首尾"00"的情况，首先在数组首位各添一个0
+        
+        class Solution:
+        def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
+            flowerbed = [0] + flowerbed + [0]        
+            s = ''.join(str(i) for i in flowerbed).split('1')
+            res = 0
+            for i in s:
+                if len(i) >= 3:
+                    res += (len(i)-1) // 2
+             
+            if n <= res:
+                return True
+            else:
+                return False         
+        
+'''
 
 class Solution:
     def canPlaceFlowers(self, flowerbed, n):
-        pass
 
+        flowerbed.insert(0, 0)
+        flowerbed.append(0)
 
+        count = 0
+        if(len(flowerbed) == 1 and flowerbed[0] == 0):
+            return True
+        else:
+            empty = ''.join([str(i) for i in flowerbed]).split("1")
+            for i in empty:
+                if(len(i) >= 3):
+                    if (len(i) % 2 == 1):
+                        count += len(i) // 2
+                    else:
+                        count += (len(i) - 1) // 2
+            return count >= n
 
 if __name__ == "__main__":
 
     S = Solution()
-    nums = [1, 0, 0, 0, 1]
-    print(S.canPlaceFlowers(nums, 2))
+    nums = [1]
+    print(S.canPlaceFlowers(nums, 0))
 
 
