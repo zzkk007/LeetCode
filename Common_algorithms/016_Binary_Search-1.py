@@ -21,11 +21,6 @@
         如果检查发现 nums[mid - 1] = val, 说明mid 不是我们要的元素，
         更新 high = mid - 1, 因为要找的元素肯定出现在[low, mid - 1]之间。
 
-
-
-
-
-
 """
 
 def binary_search(nums, val):
