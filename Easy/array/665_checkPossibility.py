@@ -37,6 +37,8 @@
 
 """
 
+"""
+
 class Solution(object):
     def checkPossibility(self, nums):
         if len(nums) < 3:
@@ -61,6 +63,37 @@ class Solution(object):
                 else:
                     nums[i] = left
         return True
+
+"""
+
+# 仔细阅读题目发现去掉这个要转换的元素，剩下的就是非递减序列，找到这个要转换的元素，就在峰值旁边
+class Solution(object):
+    def checkPossibility(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        for i in range(len(nums) - 1):
+            if nums[i] > nums[i + 1]:
+                tmp1 = self.check(nums[:i] + nums[i + 1:])
+                tmp2 = self.check(nums[:i + 1] + nums[i + 2:])
+                return True if tmp1 or tmp2 else False
+        return True
+
+    def check(self, nums):
+        for i in range(len(nums) - 1):
+            if nums[i] > nums[i + 1]:
+                return False
+        return True
+
+def check(self, nums):
+    for i in range(len(nums) - 1):
+        if nums[i] > nums[i + 1]:
+            return False
+    return True
+
+
+
 
 if __name__ == "__main__":
     S = Solution()
