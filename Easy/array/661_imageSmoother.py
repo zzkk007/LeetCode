@@ -56,3 +56,7 @@ class Solution(object):
                 M[i - 1][j - 1] = int(sums / (9 - k))
         return M
 
+
+if __name__ == "__main__":
+    S = Solution()
+    print(S.imageSmoother([[1,1,1],[1,0,1],[1,1,1]]))
