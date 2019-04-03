@@ -27,6 +27,7 @@ class Solution():
     def maxProfix(self, prices):
         minprice = 2 ** 31
         maxprofit = 0
+
         for i in prices:
             if i < minprice:
                 minprice = i

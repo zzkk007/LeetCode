@@ -23,7 +23,12 @@
 
 class Sloution(object):
     def findLengthOfLCIS(self, nums):
-        pass
+        length = 0
+        for i in range(len(nums)-1):
+            pass
+
+
+
 
 
 
