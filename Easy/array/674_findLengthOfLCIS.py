@@ -19,6 +19,8 @@
 
     注意数组长度不会超过 10000。
 
+
+    # 参考 letCode 122
 """
 
 class Sloution(object):
