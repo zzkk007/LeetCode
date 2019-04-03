@@ -57,7 +57,7 @@ class Solution(object):
 
                 left = nums[i - 1]
                 if left > right:
-                    nums[i+1] = nums[i]
+                    nums[i + 1] = nums[i]
                 else:
                     nums[i] = left
         return True
