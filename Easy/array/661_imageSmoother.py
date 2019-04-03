@@ -29,3 +29,30 @@
         矩阵的长和宽的范围均为 [1, 150]。
 
 """
+
+
+class Solution(object):
+    def imageSmoother(self, M):
+        """
+        :type M: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        # padding
+        m = len(M[0])
+        N = [[0.5] + i + [0.5] for i in M]
+        N = [[0.5] * (m + 2)] + N + [[0.5] * (m + 2)]
+
+        # 卷积
+        for i in range(1, len(N) - 1):
+            for j in range(1, len(N[0]) - 1):
+                total = [N[i - 1][j - 1], N[i][j - 1], N[i + 1][j - 1], N[i - 1][j], N[i][j], N[i + 1][j],
+                         N[i - 1][j + 1], N[i][j + 1], N[i + 1][j + 1]]
+                sums, k = 0, 0
+                for _ in total:
+                    if _ != 0.5:
+                        sums += _
+                    else:
+                        k += 1
+                M[i - 1][j - 1] = int(sums / (9 - k))
+        return M
+
