@@ -30,7 +30,15 @@
 
 class Solution:
     def findShortestSubArray(self, nums):
-        pass
+
+        ll = list()
+
+        for num in nums:
+            if num not in ll:
+                ll.append()
+
+
+
 
 
 if __name__ == "__main__":
