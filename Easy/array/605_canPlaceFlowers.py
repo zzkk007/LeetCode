@@ -43,6 +43,7 @@
         
 '''
 
+
 class Solution:
     def canPlaceFlowers(self, flowerbed, n):
 
@@ -61,6 +62,8 @@ class Solution:
                     else:
                         count += (len(i) - 1) // 2
             return count >= n
+
+
 
 if __name__ == "__main__":
 
