@@ -31,13 +31,13 @@
 class Solution:
     def findShortestSubArray(self, nums):
 
-        ll = list()
+        counts = [0] * (max(nums) + 1)
+        print(counts)
 
-        for num in nums:
-            if num not in ll:
-                ll.append()
+        for i in range(len(nums)):
+            counts[nums[i]] += 1
 
-
+        print(counts)
 
 
 
