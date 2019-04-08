@@ -27,19 +27,30 @@
 
 """
 
+#用dict记录nums中每个元素出现的位置，
+#度为出现位置最多的len，返回拥有相同度的元素中，min（首末位置最+1）
+
 
 class Solution:
     def findShortestSubArray(self, nums):
 
-        counts = [0] * (max(nums) + 1)
-        print(counts)
+        dict_map = dict()
 
         for i in range(len(nums)):
-            counts[nums[i]] += 1
+            if nums[i] not in dict_map:
+                dict_map[nums[i]] = [i]
+            else:
+                dict_map[nums[i]].append(i)
 
-        print(counts)
+        m = 0
+        for i in dict_map:
+            m = max(m, len(dict_map[i]))
 
-
+        r = len(nums)
+        for i in dict_map:
+            if len(dict_map[i]) == m:
+                r = min(r, dict_map[i][-1] - dict_map[i][0] + 1)
+        return r
 
 if __name__ == "__main__":
     S = Solution()
