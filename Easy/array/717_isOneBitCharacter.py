@@ -32,19 +32,16 @@
 
 class Solution(object):
     def isOneBitCharacter(self, bits):
-        num=len(bits)-1
-        count=0
-        if bits[-1] == 1:
-            return False
-        for i in range(num-1,-1,-1):   #倒序遍历
+        count = 0
+        for i in range(len(bits)-2, -1, -1):
             if bits[i] == 1:
-                count=count+1
+                count += 1
             else:
                 break
-        if (count % 2)== 0:
+        
+        if count % 2 == 0:
             return True
-        else:
-            return False
+        return False
 
 """
 
