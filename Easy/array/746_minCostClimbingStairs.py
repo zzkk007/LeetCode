@@ -7,9 +7,11 @@
 
     示例 1：
 
+
         输入: [10, 15, 20]
         输出：15
         解释：最低花费是从cost[1]开始，然后走两步即可到阶梯顶，一共花费15。
+             走一步，cost[1]=15, 下一次我直接越过20，走两步，到顶了。
 
     示例 2:
 
@@ -23,3 +25,24 @@
         每一个 cost[i] 将会是一个Integer类型，范围为 [0, 999]。
 
 """
+
+
+
+class Solution(object):
+    def minCostClimbingStairs(self, cost):
+        pass
+
+
+
+
+
+
+
+
+
+
+
+if __name__ == "__main__":
+    S = Solution()
+    cost = [1, 100, 1, 1, 1, 100, 1, 1, 100, 1]
+    S.minCostClimbingStairs(cost)
