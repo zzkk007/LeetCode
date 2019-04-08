@@ -31,7 +31,11 @@
 
 """
 
-# 从左往右找到第一次出现的数组的中心索引，如果不存在返回-1
+
+
+"""
+
+# 暴力法：从左往右找到第一次出现的数组的中心索引，如果不存在返回-1
 class Solution(object):
     def pivotIndex(self, nums):
         if nums == []:
@@ -47,6 +51,23 @@ class Solution(object):
         if sum(nums[:len(nums) - 1]) == 0:
             return len(nums) - 1
 
+        return -1
+
+"""
+
+
+class Solution(object):
+    def pivotIndex(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        left,right = 0,sum(nums)
+        for i in range(len(nums)):
+            right -= nums[i]
+            if left == right:
+                return i
+            left += nums[i]
         return -1
 
 if __name__ == "__main__":
