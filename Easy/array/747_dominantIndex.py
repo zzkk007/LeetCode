@@ -46,5 +46,5 @@ if __name__ == "__main__":
     S = Solution()
     #nums = [1, 2, 3, 4]
     #nums = [3, 6, 1, 0]
-    # nums = [0, 0, 3, 2]
+    nums = [0, 0, 3, 2]
     print(S.dominantIndex(nums))
