@@ -27,22 +27,20 @@
 """
 
 
+# 到达当前台阶时判断下从前一个台阶过来省事，还是从前一个的前一个过来省事，
+# 一直累加到最后一个台阶完，最小值就是最省体力的。
+# 用p1和p2表示前两个和前一个台阶所耗费的体力，一遍循环就可以了。
 
 class Solution(object):
     def minCostClimbingStairs(self, cost):
-        pass
-
-
-
-
-
-
-
-
-
+        p1, p2 = 0, 0
+        for i in range(2, len(cost) + 1):
+            p1, p2 = p2, min(p2 + cost[i - 1], p1 + cost[i - 2])
+            print(p1, p2)
+        return p2
 
 
 if __name__ == "__main__":
     S = Solution()
     cost = [1, 100, 1, 1, 1, 100, 1, 1, 100, 1]
-    S.minCostClimbingStairs(cost)
+    print(S.minCostClimbingStairs(cost))
