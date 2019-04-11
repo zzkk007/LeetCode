@@ -33,15 +33,31 @@
 """
 
 
+# 对于开头结尾都是1的情况，实际上就是找到相邻 1 之间的最大间隔/2，
+# 对于开头结尾非1的情况，需要特殊处理。对于[0,1]这种数据（开头非1），
+# 我们需要找到第一个1（i位置），关于0位置的对称点（-i位置），认为这个位置有最初的一个虚拟1。
+# 对于[1,0]这种数据（结尾非1），我们需要找到最后一个1（j位置），
+# 关于len(seats)-1位置的对称点（2 * len(seats) - j - 2），认为这个位置有最后的一个虚拟1。
+
 class Solution(object):
 
     def maxDistToClosest(self, seats):
+        dis = []
+        if seats[0] == 0:
+            dis.append(-seats.index(1))
 
-        string = "".join(str(i) for i in seats)
-        aa = string.split('1')
+        for i in range(len(seats)):
+            if seats[i] == 1:
+                dis.append(i)
+
+        if seats[-1] == 0:
+            dis.append(2 * len(seats) - dis[-1] - 2)
 
 
-
+        res = 0
+        for i in range(1, len(dis)):
+            res = max(res, dis[i] - dis[i-1])
+        return res // 2
 
 
 if __name__ == "__main__":
