@@ -44,22 +44,55 @@
     答案肯定存在。
 
 """
+"""
 
+# 超时的代码
+
+    class Solution(object):
+    def fairCandySwap(self, A, B):
+
+        sumA = sum(A)
+        sumB = sum(B)
+        flag = True
+        ans = []
+
+        for numA in A:
+            if not flag:
+                break
+            for numB in B:
+                if sumA > sumB:
+                    diff = sumA - sumB
+                    if diff == 2 * (numA - numB):
+                        ans.extend([numA, numB])
+                        flag = False
+                        break
+                else:
+                    diff = sumB - sumA
+                    if diff == 2 * (numB - numA):
+                        ans.extend([numA, numB])
+                        flag = False
+                        break
+        return ans
+
+
+
+"""
 
 
 class Solution(object):
     def fairCandySwap(self, A, B):
+        sumA = sum(A)
+        sumB = sum(B)
 
-        ans = []
-        if sum(A) > sum(B):
-            pass
-
-        return ans
-
+        diff = (sumA-sumB)//2
+        setB = set(B)
+        for numA in A:
+            if numA - diff in setB:
+                return [numA, (numA - diff)]
 
 if __name__ == "__main__":
 
-    A = [1, 1]
-    B = [2, 2]
+    A = [1,2]
+    B = [2,3]
     S = Solution()
     print(S.fairCandySwap(A, B))
