@@ -19,9 +19,9 @@
 
 """
 
+"""
 class Solution(object):
     def singleNumber(self, nums):
-
         hash_table = dict()
         for i in range(len(nums)):
             if nums[i] not in hash_table:
@@ -32,6 +32,14 @@ class Solution(object):
         for k, v in hash_table.items():
             if v == 1:
                 return k
+
+"""
+class Solution(object):
+    def singleNumber(self, nums):
+        a = 0
+        for num in nums:
+            a = a ^ num
+        return a
 
 
 
