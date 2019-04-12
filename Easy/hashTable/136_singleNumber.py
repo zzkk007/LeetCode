@@ -22,17 +22,16 @@
 class Solution(object):
     def singleNumber(self, nums):
 
-        hash_table = dict
+        hash_table = dict()
         for i in range(len(nums)):
-            pass
+            if nums[i] not in hash_table:
+                hash_table[nums[i]] = 1
+            else:
+                hash_table[nums[i]] += 1
 
-
-
-
-
-
-
-
+        for k, v in hash_table.items():
+            if v == 1:
+                return k
 
 
 
