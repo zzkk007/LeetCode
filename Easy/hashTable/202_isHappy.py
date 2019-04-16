@@ -23,8 +23,30 @@
 
 
 class Solution(object):
+
     def isHappy(self, n):
-        pass
+        hash_dict = dict()
+
+        while n != 1:
+            hash_dict[n] = n
+
+            m = 0
+            while n != 0:
+                m += (n%10)**2
+                n //= 10
+
+            n = m
+            if n in hash_dict:
+                return False
+
+        return True
+
+
+
+
+
+
+
 
 
 
