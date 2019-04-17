@@ -33,18 +33,34 @@
 """
 
 
+
+
+"""
 class Solution(object):
 
     def fib(self, N):
-        pass
+        if N <= 1:
+            return N
 
+        else:
+            return self.fib(N-1) + self.fib(N - 2)
+"""
 
+class Solution(object):
+    def fib(self, N):
 
+        if N <= 1:
+            return N
 
+        num1 = 0
+        num2 = 1
+        num = 0
+        for i in range(N):
+            num = num1 + num2
+            num1, num2 = num, num1
 
-
-
+        return num
 
 if __name__ == "__main__":
     S = Solution()
-    print(S.fib(3))
+    print(S.fib(2))
