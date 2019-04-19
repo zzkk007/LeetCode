@@ -84,7 +84,7 @@ class Tree(object):
         treeNode = self.root
         print(treeNode.elem)
 
-        while treeNode:
+        while treeNode is not  None:
 
             print(treeNode.elem)
             if data == treeNode.elem:
@@ -95,6 +95,70 @@ class Tree(object):
                 treeNode = treeNode.rchild
 
         return None
+
+
+    def insert(self, data):
+        node = Node(data)
+        treeNode = self.root
+        while treeNode:
+
+            if data > treeNode.elem:
+                if treeNode.rchild is None:
+                    treeNode.rchild = node
+                    return
+                treeNode = treeNode.rchild
+
+            else:
+                if treeNode.lchild is None:
+                    treeNode.lchild = node
+                    return
+                treeNode = treeNode.lchild
+
+    def delete(self, data):
+
+        # treeNode 指向要删除的节点，初始化指向根节点
+        treeNode = self.root
+        ftreeNode = None   # ftreeNode 记录treeNode 的父节点。
+
+        # 寻找要删除的节点。
+        while treeNode and treeNode.elem != data:
+            ftreeNode = treeNode
+            if data > treeNode.elem:
+                treeNode = treeNode.rchild
+            else:
+                treeNode = treeNode.lchild
+
+        if treeNode is None:
+            return   # 没有找到
+
+        # 要删除的节点有两个子节点
+        if treeNode.lchild  and  treeNode.rchild:
+            minP = treeNode.rchild
+            minPP = treeNode  # minPP 表示 minP 的父节点
+            while minP.lchild:
+                minPP = minP
+                minP = minP.lchild
+
+            treeNode.elem = minP.elem  # 将 minP 的数据替换到treeNode 中。
+            treeNode = minP  # 下面就变成了删除 minP 了。
+            ftreeNode = minPP
+
+        # 删除节点是叶子节点或者仅有一个节点
+
+        child = None
+        if treeNode.lchild:
+            child = treeNode.lchild
+        elif treeNode.rchild:
+            child = treeNode.rchild
+        else:
+            child = None
+
+        if ftreeNode is None:
+            self.root = child  # 删除根节点
+        elif ftreeNode.lchild == treeNode:
+            ftreeNode.lchild = child
+        else:
+            ftreeNode.rchild = child
 
 
 if __name__ == "__main__":
@@ -110,14 +174,13 @@ if __name__ == "__main__":
 
     # tree.breadth_travel(tree.root)
 
-    tree.preorder(tree.root)
+    #tree.preorder(tree.root)
     print('----------------')
     tree.inorder(tree.root)
     print('----------------')
-    tree.postorder(tree.root)
+    #tree.postorder(tree.root)
 
 
-    print('========start==========')
 
 
-    #print(tree.find(1))
+    #print(tree.find(12))

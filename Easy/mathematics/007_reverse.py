@@ -24,12 +24,14 @@
         请根据这个假设，如果反转后整数溢出那么就返回 0。
 """
 
+
 class Solution(object):
-    def reverse(self, x):
-        pass
+    def reverse(self, x: int) -> int:
+        return 12
+
 
 
 if __name__ == "__main__":
     S = Solution()
-    S.reverse(123)
+    print(S.reverse(123))
 
