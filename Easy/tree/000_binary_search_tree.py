@@ -1,186 +1,125 @@
 """
-    二叉查找树又叫二叉搜索树。
-    树中的任意一个节点，左子树上的每个节点都小于这个节点，
-    而右子树上的每个节点都大于这个节点。
+
+    二叉搜索树： binary_search_tree
 
 """
 
-class Node(object):
-    """节点类"""
-    def __init__(self, elem = None, lchild=None, rchild=None):
-        self.elem = elem
-        self.lchild = lchild
-        self.rchild = rchild
+from queue import Queue
+import math
+
+class TreeNode(object):
+    def __init__(self, val=None):
+        self.val = val
+        self.left = None
+        self.right = None
+        self.parent = None
 
 
-class Tree(object):
+class BinarySearchTree(object):
 
-    def __init__(self, root=None):
-        self.root = root
-        self.myQueue = []
+    def __init__(self, val_list=[]):
+        self.root = None
 
-    def add(self, elem):
-        node = Node(elem)
-
-        if self.root is None:
-            self.root = node
-            self.myQueue.append(self.root)
-        else:
-            treeNode = self.myQueue.pop(0)
-            #print("treeNode:%d" % treeNode.elem)
-            if treeNode.lchild == None:
-                treeNode.lchild = node
-                self.myQueue.append(treeNode.lchild)
-            elif treeNode.rchild == None:
-                treeNode.rchild = node
-                self.myQueue.append(treeNode.rchild)
-
-
-    def preorder(self, root):
-
-        # 前序遍历，根、左、右
-        if root == None:
-            return
-
-        print(root.elem)
-        self.preorder(root.lchild)
-        self.preorder(root.rchild)
-
-    def inorder(self,root):
-
-        # 中序遍历，左、根、右
-        if root == None:
-            return
-        self.inorder(root.lchild)
-        print(root.elem)
-        self.inorder(root.rchild)
-
-    def postorder(self, root):
-        # 后序遍历， 左、右、根
-        if root == None:
-            return
-
-        self.preorder(root.lchild)
-        self.preorder(root.rchild)
-        print(root.elem)
-
-
-    def breadth_travel(self, root):
-        if root == None:
-            return
-
-        queue = []
-        queue.append(root)
-        while queue:
-            node = queue.pop(0)
-            print(node.elem)
-
-            if node.lchild != None:
-                queue.append(node.lchild)
-            elif node.rchild != None:
-                queue.append(node.rchild)
-
-    def find(self, data):
-        treeNode = self.root
-        print(treeNode.elem)
-
-        while treeNode is not  None:
-
-            print(treeNode.elem)
-            if data == treeNode.elem:
-                return treeNode
-            elif data < treeNode.elem:
-                treeNode = treeNode.lchild
-            elif data > treeNode.elem:
-                treeNode = treeNode.rchild
-
-        return None
-
+        for n in val_list:
+            self.insert(n)
 
     def insert(self, data):
-        node = Node(data)
-        treeNode = self.root
-        while treeNode:
+        """
+        插入
+        :param data:
+        :return:
+        """
 
-            if data > treeNode.elem:
-                if treeNode.rchild is None:
-                    treeNode.rchild = node
-                    return
-                treeNode = treeNode.rchild
+        assert(isinstance(data, int))
 
+        if self.root is None:
+            self.root = TreeNode(data)
+        else:
+            n = self.root
+            while n:
+                p = n
+                if data < n.val:
+                    n = n.left
+                else:
+                    n = n.right
+            new_node = TreeNode(data)
+            new_node.parent = p
+
+            if data < p.val:
+                p.left = new_node
             else:
-                if treeNode.lchild is None:
-                    treeNode.lchild = node
-                    return
-                treeNode = treeNode.lchild
+                p.right = new_node
+
+        return True
+
+    def search(self, data):
+        """
+        搜索
+        返回bst中所有值为 data 的节点列表
+        :param data:
+        :return:
+        """
+        assert(isinstance(data, int))
+
+        # 所有搜索到的节点
+        ret = []
+
+        n = self.root
+        while n:
+            if data < n.val:
+                n = n.left
+            else:
+                if data == n.val:
+                    ret.append(n)
+                n = n.right
+
+        return ret
 
     def delete(self, data):
+        """
+        删除
+        :param data:
+        :return:
+        """
 
-        # treeNode 指向要删除的节点，初始化指向根节点
-        treeNode = self.root
-        ftreeNode = None   # ftreeNode 记录treeNode 的父节点。
+        assert(isinstance(data, int))
 
-        # 寻找要删除的节点。
-        while treeNode and treeNode.elem != data:
-            ftreeNode = treeNode
-            if data > treeNode.elem:
-                treeNode = treeNode.rchild
+        # 通过搜索得到需要删除的节点
+        del_list = self.search(data)
+
+        for n in del_list:
+            # 父节点为空，又不是根节点，已经不再树上了，不用再删除
+            if n.parent is None and n != self.root:
+                continue
             else:
-                treeNode = treeNode.lchild
+                self._del(n)
 
-        if treeNode is None:
-            return   # 没有找到
+    def _del(self, node):
+        """
+        删除
+        所有删除的节点N存在以下情况
+        1. 删除节点没有子节点：直接删除 N 的父节点指针
+        2. 有一个子节点：将 N 符节点指针指向 N 的子节点
+        3. 有两个子节点：找到右子树的最小节点M, 将值赋值给N,然后删除 M
+        :param node:
+        :return:
+        """
 
-        # 要删除的节点有两个子节点
-        if treeNode.lchild  and  treeNode.rchild:
-            minP = treeNode.rchild
-            minPP = treeNode  # minPP 表示 minP 的父节点
-            while minP.lchild:
-                minPP = minP
-                minP = minP.lchild
+        # 1
+        if node.left is None and node.right is None:
+            # 情况 1 和 2，根节点和普通节点的处理方式不同
 
-            treeNode.elem = minP.elem  # 将 minP 的数据替换到treeNode 中。
-            treeNode = minP  # 下面就变成了删除 minP 了。
-            ftreeNode = minPP
+            if node == self.root:
+                self.root = None
+            else:
+                if node.val < node.parent.val:
+                    node.parent.left = None
+                else:
+                    node.parent.right = None
 
-        # 删除节点是叶子节点或者仅有一个节点
+                # 将 node 指向父节点的指针指空。
+                node.parent = None
 
-        child = None
-        if treeNode.lchild:
-            child = treeNode.lchild
-        elif treeNode.rchild:
-            child = treeNode.rchild
-        else:
-            child = None
+        # 2
+        elif node.left is None 
 
-        if ftreeNode is None:
-            self.root = child  # 删除根节点
-        elif ftreeNode.lchild == treeNode:
-            ftreeNode.lchild = child
-        else:
-            ftreeNode.rchild = child
-
-
-if __name__ == "__main__":
-
-    tree = Tree()
-    tree.add(10)
-    tree.add(8)
-    tree.add(12)
-    tree.add(6)
-    tree.add(9)
-    tree.add(11)
-    tree.add(15)
-
-    # tree.breadth_travel(tree.root)
-
-    #tree.preorder(tree.root)
-    print('----------------')
-    tree.inorder(tree.root)
-    print('----------------')
-    #tree.postorder(tree.root)
-
-
-
-
-    #print(tree.find(12))
