@@ -1,5 +1,7 @@
 """
-    用数组存储法创建一个二叉树，并进行遍历
+    二叉查找树又叫二叉搜索树。
+    树中的任意一个节点，左子树上的每个节点都小于这个节点，
+    而右子树上的每个节点都大于这个节点。
 
 """
 
@@ -10,29 +12,29 @@ class Node(object):
         self.lchild = lchild
         self.rchild = rchild
 
+
 class Tree(object):
-    """树类"""
 
     def __init__(self, root=None):
         self.root = root
         self.myQueue = []
 
     def add(self, elem):
-        """为树添加节点"""
         node = Node(elem)
+
         if self.root is None:
             self.root = node
-            self.myQueue.append(node)
-
+            self.myQueue.append(self.root)
         else:
             treeNode = self.myQueue.pop(0)
+            #print("treeNode:%d" % treeNode.elem)
             if treeNode.lchild == None:
                 treeNode.lchild = node
                 self.myQueue.append(treeNode.lchild)
-            else:
+            elif treeNode.rchild == None:
                 treeNode.rchild = node
                 self.myQueue.append(treeNode.rchild)
-                #self.myQueue.pop(0)
+
 
     def preorder(self, root):
 
@@ -64,9 +66,6 @@ class Tree(object):
 
 
     def breadth_travel(self, root):
-        # 广度优先遍历(层次遍历)
-        # 利用队列实现的层次遍历
-
         if root == None:
             return
 
@@ -75,10 +74,27 @@ class Tree(object):
         while queue:
             node = queue.pop(0)
             print(node.elem)
+
             if node.lchild != None:
                 queue.append(node.lchild)
-            if node.rchild != None:
+            elif node.rchild != None:
                 queue.append(node.rchild)
+
+    def find(self, data):
+        treeNode = self.root
+        print(treeNode.elem)
+
+        while treeNode:
+
+            print(treeNode.elem)
+            if data == treeNode.elem:
+                return treeNode
+            elif data < treeNode.elem:
+                treeNode = treeNode.lchild
+            elif data > treeNode.elem:
+                treeNode = treeNode.rchild
+
+        return None
 
 
 if __name__ == "__main__":
@@ -91,9 +107,17 @@ if __name__ == "__main__":
     tree.add(9)
     tree.add(11)
     tree.add(15)
-    #tree.preorder(tree.root)
-    tree.breadth_travel(tree.root)
-    #tree.inorder(tree.root)
-    #tree.postorder(tree.root)
+
+    # tree.breadth_travel(tree.root)
+
+    tree.preorder(tree.root)
+    print('----------------')
+    tree.inorder(tree.root)
+    print('----------------')
+    tree.postorder(tree.root)
 
 
+    print('========start==========')
+
+
+    #print(tree.find(1))
