@@ -10,7 +10,8 @@
 
 """
 
-
+"""
+// 超时
 class Solution(object):
     def countPrimes(self, n):
 
@@ -22,6 +23,15 @@ class Solution(object):
             if m % i == 0:
                 return False
         return True
+
+
+"""
+
+class Solution(object):
+    def countPrimes(self, n):
+        pass
+
+
 
 
 if __name__ == "__main__":
