@@ -121,5 +121,5 @@ class BinarySearchTree(object):
                 node.parent = None
 
         # 2
-        elif node.left is None 
+
 
