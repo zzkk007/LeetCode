@@ -22,3 +22,28 @@
 
 
 """
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+
+from idlelib.TreeWidget import TreeNode
+
+class Solution(object):
+    def getMinimumDifference(self, root: TreeNode) -> int:
+
+        treelist = list(self.inorder(root))
+        return min(abs(a-b) for a, b in zip(treelist,treelist[1:]))
+
+    def inorder(self, root):
+        if root:
+            yield from self.inorder(root.left)
+            yield root.val
+            yield from self.inorder(root.right)
+
+
+
