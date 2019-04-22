@@ -152,5 +152,5 @@ if __name__ == "__main__":
 
     # print(list(tree.pre_order(tree.root)))
     # print(list(tree.in_order(tree.root)))
-    print(list(tree.post_order(tree.root)))
+    # print(list(tree.post_order(tree.root)))
 
