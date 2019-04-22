@@ -117,6 +117,24 @@ class Tree(object):
                 queue.append(node.rchild)
 
 
+    def pre_order(self, root):
+        if root:
+            yield root.elem
+            yield from self.pre_order(root.lchild)
+            yield from self.pre_order(root.rchild)
+
+    def in_order(self, root):
+        if root:
+            yield from self.in_order(root.lchild)
+            yield root.elem
+            yield from self.in_order(root.rchild)
+
+    def post_order(self, root):
+        if root:
+            yield from self.post_order(root.lchild)
+            yield from self.post_order(root.rchild)
+            yield root.elem
+
 if __name__ == "__main__":
 
     tree = Tree()
@@ -127,11 +145,12 @@ if __name__ == "__main__":
     tree.add(9)
     tree.add(11)
     tree.add(15)
-    #tree.preorder(tree.root)
-    #tree.breadth_travel(tree.root)
-    tree.inorder(tree.root)
-    #tree.postorder(tree.root)
+    # tree.preorder(tree.root)
+    # tree.breadth_travel(tree.root)
+    # tree.inorder(tree.root)
+    # tree.postorder(tree.root)
 
-
-
+    # print(list(tree.pre_order(tree.root)))
+    # print(list(tree.in_order(tree.root)))
+    print(list(tree.post_order(tree.root)))
 
