@@ -1,24 +1,20 @@
 """
     用数组存储法创建一个二叉树，并进行遍历
 
-"""
-
 class Node(object):
-    """节点类"""
     def __init__(self, elem = None, lchild=None, rchild=None):
         self.elem = elem
         self.lchild = lchild
         self.rchild = rchild
 
 class Tree(object):
-    """树类"""
 
     def __init__(self, root=None):
         self.root = root
         self.myQueue = []
 
     def add(self, elem):
-        """为树添加节点"""
+
         node = Node(elem)
         if self.root is None:
             self.root = node
@@ -33,6 +29,46 @@ class Tree(object):
                 treeNode.rchild = node
                 self.myQueue.append(treeNode.rchild)
                 #self.myQueue.pop(0)
+"""
+
+
+class Node(object):
+    """节点类"""
+    def __init__(self, elem=-1, lchild=None, rchild=None):
+        self.elem = elem
+        self.lchild = lchild
+        self.rchild = rchild
+
+
+class Tree(object):
+    """树类"""
+
+    def __init__(self, root=None):
+        self.root = root
+
+    def add(self, elem):
+        """为树添加节点"""
+        node = Node(elem)
+        # 如果树是空的，则对根节点赋值
+        if self.root == None:
+            self.root = node
+        else:
+            queue = []
+            queue.append(self.root)
+            # 对已有的节点进行层次遍历
+            while queue:
+                # 弹出队列的第一个元素
+                cur = queue.pop(0)
+                if cur.lchild == None:
+                    cur.lchild = node
+                    return
+                elif cur.rchild == None:
+                    cur.rchild = node
+                    return
+                else:
+                    # 如果左右子树都不为空，加入队列继续判断
+                    queue.append(cur.lchild)
+                    queue.append(cur.rchild)
 
     def preorder(self, root):
 
@@ -92,8 +128,8 @@ if __name__ == "__main__":
     tree.add(11)
     tree.add(15)
     #tree.preorder(tree.root)
-    tree.breadth_travel(tree.root)
-    #tree.inorder(tree.root)
+    #tree.breadth_travel(tree.root)
+    tree.inorder(tree.root)
     #tree.postorder(tree.root)
 
 
