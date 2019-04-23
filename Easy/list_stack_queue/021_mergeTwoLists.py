@@ -17,7 +17,7 @@ class ListNode:
         self.val = x
         self.next = None
 
-class Solution:
+class Solution(object):
     def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
 
         res = ListNode(None)
@@ -37,5 +37,43 @@ class Solution:
 
         return res.next
 
+
+def LinkList(links):
+    prev = ListNode(None)
+    cur = prev
+    for node in links:
+        cur.next = node
+        cur = cur.next
+    return prev.next
+
+def travel(links):
+
+    cur = links
+    while cur:
+        print(cur.val)
+        cur = cur.next
+
+if __name__ == "__main__":
+
+    links1 = []
+    links1.append(ListNode(1))
+    links1.append(ListNode(2))
+    links1.append(ListNode(4))
+
+    links2 = []
+    links2.append(ListNode(1))
+    links2.append(ListNode(3))
+    links2.append(ListNode(4))
+
+    l1 = LinkList(links1)
+    travel(l1)
+
+    l2 = LinkList(links2)
+    travel(l2)
+    print('--------------')
+
+    S = Solution()
+    l3 = S.mergeTwoLists(l1,l2)
+    travel(l3)
 
 
