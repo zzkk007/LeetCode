@@ -30,7 +30,6 @@ def LinkList(links):
     return prev.next
 
 def travel(links):
-
     cur = links
     while cur:
         print(cur.val)
@@ -39,17 +38,15 @@ def travel(links):
 class Solution(object):
     def deleteDuplicates(self, head: ListNode) -> ListNode:
         cur = head
-        prev = None
-
-        while cur.next:
-            if cur.val == cur.next.val:
-                pass
-
-
-
-
-
-
+        while cur:
+            temp = cur
+            while temp.next:
+                if temp.val == temp.next.val:
+                    temp.next = temp.next.next
+                else:
+                    temp = temp.next
+            cur = cur.next
+        return head
 
 if __name__ == "__main__":
 
@@ -57,8 +54,6 @@ if __name__ == "__main__":
     links1.append(ListNode(1))
     links1.append(ListNode(1))
     links1.append(ListNode(2))
-    links1.append(ListNode(4))
-    links1.append(ListNode(4))
 
     l1 = LinkList(links1)
     travel(l1)
