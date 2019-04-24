@@ -28,5 +28,20 @@
 
 class Solution(object):
     def isIsomorphic(self, s: str, t: str) -> bool:
-        pass
+        d = {}
+        for i in range(len(s)):
+            if s[i] in d:
+                if d[s[i]] != t[i]:
+                    return False
+            else:
+                if t[i] in d.values():
+                    return False
+                d[s[i]] = t[i]
 
+            return True
+
+
+
+if __name__ =="__main__":
+    S = Solution()
+    print(S.isIsomorphic('eggff', 'addadeaattrew'))
