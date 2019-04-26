@@ -45,11 +45,23 @@ class Solution(object):
         :type head: ListNode
         :rtype: bool
         """
-
+        # 快慢指针法
         fast = slow = head
         while slow and fast and fast.next:
             slow = slow.next
             fast = fast.next.next
             if slow is fast:
                 return True
+        return False
+
+        # 集合法：
+        # set 中的值
+        Set = set()
+        while head:
+            if head in Set:
+                return True
+            else:
+                Set.add(head)
+            head = head.next
+
         return False
