@@ -55,7 +55,7 @@ class Solution(object):
         return False
 
         # 集合法：
-        # set 中的值
+        # set 中的值是一个键值。
         Set = set()
         while head:
             if head in Set:
