@@ -35,17 +35,18 @@ def travel(links):
         print(cur.val)
         cur = cur.next
 
+# 这是一个简单的问题，仅测试你操作列表的结点指针的能力。
+# 由于输入的列表已排序，因此我们可以通过将结点的值与它之后的结点进行比较来确定它是否为重复结点。
+# 如果它是重复的，我们更改当前结点的 next 指针，以便它跳过下一个结点并直接指向下一个结点之后的结点。
+
 class Solution(object):
     def deleteDuplicates(self, head: ListNode) -> ListNode:
         cur = head
-        while cur:
-            temp = cur
-            while temp.next:
-                if temp.val == temp.next.val:
-                    temp.next = temp.next.next
-                else:
-                    temp = temp.next
-            cur = cur.next
+        while cur and cur.next:
+            if cur.val == cur.next.val:
+                cur.next = cur.next.next
+            else:
+                cur = cur.next
         return head
 
 if __name__ == "__main__":
