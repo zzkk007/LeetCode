@@ -14,31 +14,6 @@
 #         self.val = x
 #         self.next = None
 
-"""
-
-# 超出时间限制
-class Solution(object):
-    def removeElements(self, head, val):
-
-        if head is None:
-            return None
-
-        if head.val == val:
-            return head.next
-
-        pro = head
-        node = head.next
-
-        while node:
-            if node.val == val:
-                pro.next = node.next
-            else:
-                pro, node = node, node.next
-        return head
-
-"""
-
-
 class Solution(object):
     def removeElements(self, head, val):
         """
