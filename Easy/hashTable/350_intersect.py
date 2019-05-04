@@ -28,7 +28,7 @@
 class Solution:
     def intersect(self, nums1, nums2):
 
-        inter = set(nums1) & set(nums2)
+        inter = set(nums1).intersection(set(nums2))
 
         print(inter)
 
